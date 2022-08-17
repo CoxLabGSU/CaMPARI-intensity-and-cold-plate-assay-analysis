@@ -1,0 +1,38 @@
+
+library(stringi)
+
+
+tere<-choose.dir()
+
+setwd(gsub("\\\\","/",tere))
+
+fname<-list.files(dname[jj],pattern="*.csv")
+allfiles <- list.files(gsub("\\\\","/",tere), pattern = "*.txt", full.names = TRUE)
+allfiles
+
+combo_red<-list()
+combo_ratio<-list()
+
+for (file in allfiles) {
+  
+  the_data <- read.table(file, skip=1)
+  ere<-readLines(file, 1)
+  ere1<-  gsub(" |/", "_",ere)
+  ere2<-gsub("\t", " ",ere1)
+  ere2
+  eref<-stri_split_boundaries(ere2, simplify = TRUE)
+  eref
+  findat<-data.frame(the_data[,1:8])
+  colnames(findat)<-eref
+  
+  combo_red[file]<-data.frame(findat$`red_mean `)
+  combo_ratio[file]<-data.frame(findat$`red_mean_green_mean `)
+  
+}
+dsred<-dplyr::bind_cols(combo_red)
+dsratio<-dplyr::bind_cols(combo_ratio)
+
+
+write.csv(dsred, "all_combo_red.csv")
+
+write.csv(dsratio, "all_combo_r_g_ratio.csv")
