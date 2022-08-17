@@ -2,4 +2,4 @@
 Code used for analysis of data included in Modality specific roles for metabotropic GABAergic signaling and calcium induced calcium release mechanisms in regulating cold nociception, 2022.
 
 
-Demo files are available upon request (contact:atitpatel2004@gmail.com). 
+Demo files are available upon request (contact:apatel221@gsu.edu). 
